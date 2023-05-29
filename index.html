@@ -7,54 +7,98 @@
   <body>
     <div class="container">
       <h1>Meal Plan Generator</h1>
-      <form id="mealPlanForm">
-        <label for="mealCount">Number of Meals:</label>
-        <select id="mealCount">
-          <option value="3">Three</option>
-          <option value="5">Five</option>
-          <option value="2">Two</option>
-        </select>
 
-        <label for="diet">Diet Preference:</label>
-        <select id="diet">
-          <option value="balanced">Balanced Diet (Recommended)</option>
-          <option value="low-carb">
-            Low-Carb (Less than 20% of total calories from carbs)
-          </option>
-          <option value="low-fat">
-            Low-Fat (Less than 15% of total calories from fat)
-          </option>
-        </select>
+      <div id="calorieCalculator">
+        <h2>Calorie Calculator</h2>
+        <form id="calorieCalculatorForm">
+          <label for="gender">Gender:</label>
+          <select id="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
 
-        <label for="health">Health Specification:</label>
-        <select id="health">
-          <option value="">None</option>
-          <option value="vegan">
-            Vegan (No meat, poultry, fish, dairy, eggs or honey)
-          </option>
-          <option value="vegetarian">
-            Vegetarian (No wheat, can have gluten though)
-          </option>
-          <option value="alcohol-free">
-            Alcohol-free (No alcohol used or contained)
-          </option>
-          <option value="peanut-free">
-            Peanut Free (No peanuts or products containing peanuts)
-          </option>
-        </select>
+          <label for="age">Age:</label>
+          <input type="number" id="age" min="0" max="150" />
 
-        <label for="caloriesMin">Minimum Calories:</label>
-        <input type="number" id="caloriesMin" min="0" max="10000" />
+          <label for="height">Height (cm):</label>
+          <input type="number" id="height" min="0" max="300" />
 
-        <label for="caloriesMax">Maximum Calories:</label>
-        <input type="number" id="caloriesMax" min="0" max="10000" />
+          <label for="weight">Weight (kg):</label>
+          <input type="number" id="weight" min="0" max="500" />
 
-        <button type="submit">Generate Meal Plan</button>
-      </form>
+          <label for="activityLevel">Activity Level:</label>
+          <select id="activityLevel">
+            <option value="sedentary">Sedentary (little or no exercise)</option>
+            <option value="lightlyActive">
+              Lightly Active (light exercise/sports 1-3 days/week)
+            </option>
+            <option value="moderatelyActive">
+              Moderately Active (moderate exercise/sports 3-5 days/week)
+            </option>
+            <option value="veryActive">
+              Very Active (hard exercise/sports 6-7 days/week)
+            </option>
+            <option value="superActive">
+              Super Active (very hard exercise/sports & physical job)
+            </option>
+          </select>
 
-      <div id="mealPlanResults"></div>
+          <button type="submit">Calculate Calories</button>
+        </form>
+
+        <div id="calorieResult"></div>
+      </div>
+
+      <hr />
+
+      <div id="mealPlanGenerator">
+        <h2>Meal Plan Generator</h2>
+        <form id="mealPlanForm">
+          <label for="mealCount">Number of Meals:</label>
+          <select id="mealCount">
+            <option value="3">Three</option>
+            <option value="5">Five</option>
+            <option value="2">Two</option>
+          </select>
+
+          <label for="diet">Diet Preference:</label>
+          <select id="diet">
+            <option value="balanced">Balanced Diet (Recommended)</option>
+            <option value="low-carb">
+              Low-Carb (Less than 20% of total calories from carbs)
+            </option>
+            <option value="low-fat">
+              Low-Fat (Less than 15% of total calories from fat)
+            </option>
+          </select>
+
+          <label for="health">Health Specification:</label>
+          <select id="health">
+            <option value="">None</option>
+            <option value="vegan">
+              Vegan (No meat, poultry, fish, dairy, eggs or honey)
+            </option>
+            <option value="vegetarian">
+              Vegetarian (No wheat, can have gluten though)
+            </option>
+            <option value="alcohol-free">
+              Alcohol-free (No alcohol used or contained)
+            </option>
+            <option value="peanut-free">
+              Peanut Free (No peanuts or products containing peanuts)
+            </option>
+          </select>
+
+          <label for="calories">Calories:</label>
+          <input type="number" id="calories" min="0" max="10000" />
+
+          <button type="submit">Generate Meal Plan</button>
+        </form>
+
+        <div id="mealPlanResults"></div>
+      </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

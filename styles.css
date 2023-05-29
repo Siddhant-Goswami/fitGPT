@@ -1,16 +1,18 @@
 .container {
-  max-width: 400px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
 }
 
-h1 {
+h1,
+h2 {
   text-align: center;
 }
 
 form {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 label {
@@ -27,6 +29,6 @@ button {
   padding: 10px;
 }
 
-#mealPlanResults {
-  margin-top: 20px;
+hr {
+  margin: 40px 0;
 }

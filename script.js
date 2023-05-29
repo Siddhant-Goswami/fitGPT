@@ -4,19 +4,80 @@ const API = {
     URL: "https://api.edamam.com/search?",
 };
 
-const form = document.getElementById('mealPlanForm');
+const calorieCalculatorForm = document.getElementById('calorieCalculatorForm');
+const calorieResult = document.getElementById('calorieResult');
+const mealPlanForm = document.getElementById('mealPlanForm');
 const mealPlanResults = document.getElementById('mealPlanResults');
 
-form.addEventListener('submit', function (event) {
+calorieCalculatorForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const gender = document.getElementById('gender').value;
+    const age = parseInt(document.getElementById('age').value);
+    const height = parseInt(document.getElementById('height').value);
+    const weight = parseInt(document.getElementById('weight').value);
+    const activityLevel = document.getElementById('activityLevel').value;
+
+    if (!gender || !age || !height || !weight || !activityLevel) {
+        alert('Please fill in all the fields.');
+        return;
+    }
+
+    const calories = calculateCaloricNeeds(gender, age, height, weight, activityLevel);
+    displayCalorieResult(calories);
+});
+
+const calculateCaloricNeeds = (gender, age, height, weight, activityLevel) => {
+    let bmr;
+    if (gender === 'male') {
+        bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+    } else {
+        bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+    }
+
+    let activityFactor;
+    switch (activityLevel) {
+        case 'sedentary':
+            activityFactor = 1.2;
+            break;
+        case 'lightlyActive':
+            activityFactor = 1.375;
+            break;
+        case 'moderatelyActive':
+            activityFactor = 1.55;
+            break;
+        case 'veryActive':
+            activityFactor = 1.725;
+            break;
+        case 'superActive':
+            activityFactor = 1.9;
+            break;
+        default:
+            activityFactor = 1.2;
+    }
+
+    const calories = Math.round(bmr * activityFactor);
+    return calories;
+};
+
+const displayCalorieResult = (calories) => {
+    calorieResult.innerHTML = `
+      <p>Your estimated daily caloric needs: <strong>${calories} calories</strong></p>
+    `;
+
+    const caloriesInput = document.getElementById('calories');
+    caloriesInput.value = calories;
+};
+
+mealPlanForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
     const mealCount = parseInt(document.getElementById('mealCount').value);
     const diet = document.getElementById('diet').value;
     const health = document.getElementById('health').value;
-    const caloriesMin = parseInt(document.getElementById('caloriesMin').value);
-    const caloriesMax = parseInt(document.getElementById('caloriesMax').value);
+    const calories = parseInt(document.getElementById('calories').value);
 
-    if (!mealCount || !diet || !caloriesMin || !caloriesMax) {
+    if (!mealCount || !diet || !calories) {
         alert('Please fill in all the fields.');
         return;
     }
@@ -24,7 +85,7 @@ form.addEventListener('submit', function (event) {
     const data = {
         plan: mealCount,
         meals: Array.from(Array(mealCount).keys()).map(i => `Meal ${i + 1}`),
-        calories: { min: caloriesMin, max: caloriesMax },
+        calories: calories,
         diet: diet,
         health: health
     };
@@ -44,8 +105,8 @@ const generateMealPlan = (data) => {
 
         const mealCount = meals.length;
         const caloriesPerMeal = {
-            min: Math.round(calories.min / mealCount),
-            max: Math.round(calories.max / mealCount),
+            min: Math.round(calories / mealCount) - 300,
+            max: Math.round(calories / mealCount),
         };
 
         const promises = [];
