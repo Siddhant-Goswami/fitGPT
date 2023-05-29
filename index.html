@@ -1,34 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <title>Meal Plan Generator</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
-  <body class="bg-gray-800 text-white font-sans">
-    <header class="text-center py-5">
-      <h1 class="text-4xl font-bold">Workout App</h1>
-    </header>
-    <main class="px-5">
-      <button
-        id="generate-button"
-        class="w-full py-3 px-5 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
-      >
-        Generate Weekly Workout Plan
-      </button>
-      <table id="workout-plan" class="w-full mt-10 shadow-lg bg-gray-700">
-        <tr>
-          <th class="py-3">Day 1</th>
-          <th class="py-3">Day 2</th>
-          <th class="py-3">Day 3</th>
-          <th class="py-3">Day 4</th>
-          <th class="py-3">Day 5</th>
-          <th class="py-3">Day 6</th>
-          <th class="py-3">Day 7</th>
-        </tr>
-      </table>
-    </main>
+  <body>
+    <div class="container">
+      <h1>Meal Plan Generator</h1>
+      <form id="mealPlanForm">
+        <label for="mealCount">Number of Meals:</label>
+        <select id="mealCount">
+          <option value="3">Three</option>
+          <option value="5">Five</option>
+          <option value="2">Two</option>
+        </select>
+
+        <label for="diet">Diet Preference:</label>
+        <select id="diet">
+          <option value="balanced">Balanced Diet (Recommended)</option>
+          <option value="low-carb">
+            Low-Carb (Less than 20% of total calories from carbs)
+          </option>
+          <option value="low-fat">
+            Low-Fat (Less than 15% of total calories from fat)
+          </option>
+        </select>
+
+        <label for="health">Health Specification:</label>
+        <select id="health">
+          <option value="">None</option>
+          <option value="vegan">
+            Vegan (No meat, poultry, fish, dairy, eggs or honey)
+          </option>
+          <option value="vegetarian">
+            Vegetarian (No wheat, can have gluten though)
+          </option>
+          <option value="alcohol-free">
+            Alcohol-free (No alcohol used or contained)
+          </option>
+          <option value="peanut-free">
+            Peanut Free (No peanuts or products containing peanuts)
+          </option>
+        </select>
+
+        <label for="caloriesMin">Minimum Calories:</label>
+        <input type="number" id="caloriesMin" min="0" max="10000" />
+
+        <label for="caloriesMax">Maximum Calories:</label>
+        <input type="number" id="caloriesMax" min="0" max="10000" />
+
+        <button type="submit">Generate Meal Plan</button>
+      </form>
+
+      <div id="mealPlanResults"></div>
+    </div>
+
     <script src="app.js"></script>
   </body>
 </html>

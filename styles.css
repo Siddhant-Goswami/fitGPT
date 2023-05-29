@@ -1,35 +1,32 @@
-body {
-  background-color: #222;
-  color: #fff;
-  font-family: Arial, sans-serif;
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-header {
+h1 {
   text-align: center;
-  padding: 20px 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 5px;
 }
 
 button {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: #444;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.5);
-}
-
-table {
-  width: 80%;
-  margin: 20px auto;
-  border-collapse: collapse;
-}
-
-th,
-td {
+  margin-top: 20px;
   padding: 10px;
-  text-align: center;
-  border: 1px solid #444;
-  box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+#mealPlanResults {
+  margin-top: 20px;
 }
